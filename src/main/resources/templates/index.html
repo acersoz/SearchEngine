@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>Search Engine</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- END META SECTION -->
+    <!--  BEGIN STYLE -->
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 1px;
+        }
+    </style>
+    <!--  END STYLE -->
+
+</head>
+<body>
+<form action="#" th:action="@{/}" th:object="${search}">
+    <label for="search_input">Search:</label> <input name="search"
+                                                     id="search">
+    </input>
+    <div th:if="${not #lists.isEmpty(search)}">
+        <h2>Search Results</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Related Text</th>
+                <th>URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="search : ${search}">
+                <td th:text="${search.text}">Text ...</td>
+                <td>
+                    <a th:text="${search.url}"
+                       th:href="${search.url}">"</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+</body>
+</html>
